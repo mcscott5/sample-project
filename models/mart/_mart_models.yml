@@ -46,6 +46,11 @@ models:
         data_tests:
           - non_negative # CUSTOM TEST
 
+      - name: total_order_size
+        data_type: int
+        data_tests:
+          - non_negative # CUSTOM TEST
+
       - name: customer_id
         data_type: int
         description: "{{ doc('customer_id') }}" # description defined in docs block (at: /docs/descriptions.md)
@@ -160,3 +165,6 @@ models:
 
       - name: receipt_date
         data_type: date
+
+      - name: part_name
+        data_type: text

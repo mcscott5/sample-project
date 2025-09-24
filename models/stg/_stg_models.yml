@@ -119,3 +119,51 @@ models:
 
       - name: receipt_date
         data_type: date
+
+  - name: stg__part
+    description: >
+      Cleansed part data.
+    columns:
+      - name: part_id
+        data_type: int
+        description: "{{ doc('part_id') }}" # description defined in docs block (at: /docs/descriptions.md)
+        data_tests:
+          - unique
+          - relationships:
+              to: ref('stg__lineitem') # customer source table
+              field: part_id   # foreign key to match on
+
+      - name: name
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: comment
+        data_type: text
+        data_tests:
+          - not_null
+
+      - name: retail_price
+        data_type: number
+        data_tests:
+          - not_null
+          - non_negative # custom data test
+
+      - name: manufacturer
+        data_type: string
+        data_tests:
+          - not_null
+
+      - name: size
+        data_type: int
+        data_tests:
+          - not_null
+
+      - name: container
+        data_type: string
+        data_tests:
+          - not_null
+
+      
+
+      
