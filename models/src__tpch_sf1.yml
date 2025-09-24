@@ -12,6 +12,7 @@ sources:
         - customer
         - orders
         - lineitems
+        - part
 
     tables:
       - name: customer
@@ -122,3 +123,57 @@ sources:
             data_type: text
 
             # don't need to list all columns, although it is recommended to
+
+      - name: part
+        description:  >
+          One part per line item. Each line item has an associated part.
+        columns:
+          - name: p_partkey
+            data_type: int
+            data_tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('snowflake_sample_shop', 'line_item') # line item source table
+                  field: l_partkey # foreign key to match on
+
+          - name: p_name
+            data_type: text
+            data_tests:
+              - not_null
+
+          - name: p_mfgr
+            data_type: string
+            data_tests:
+              - not_null
+
+          - name: p_brand
+            data_type: string
+            data_tests:
+              - not_null
+
+          - name: p_type
+            data_type: string
+            data_tests:
+              - not_null
+
+          - name: p_size
+            data_type: int
+            data_tests:
+              - not_null
+
+          - name: p_container
+            data_type: string
+            data_tests:
+              - not_null
+
+          - name: p_retailprice
+            data_type: number
+            data_tests:
+              - not_null
+              - non_negative # custom data test
+
+          - name: p_comment
+            data_type: text
+            data_tests:
+              - not_null

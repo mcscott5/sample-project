@@ -17,3 +17,7 @@ Orders may have the following priorities:
 {% docs lineitem_id %}
 Unique identifier for line item
 {% enddocs %}
+
+{% docs part_id %}
+Unique identifier for part
+{% enddocs %}

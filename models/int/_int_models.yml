@@ -69,3 +69,8 @@ models:
         data_type: int
         data_tests:
           - non_negative # CUSTOM TEST (at: tests/generic/non_negative.sql)
+
+      - name: total_order_size
+        data_type: int
+        data_tests:
+          - non_negative
